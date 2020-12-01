@@ -2,6 +2,7 @@ package pl.project.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.project.execDetails.ExecDetails;
 
 import java.util.List;
 
@@ -27,6 +28,12 @@ public class TestController {
     @CrossOrigin(origins = "*")
     public void addTest(@RequestBody Test test) {
         testService.addUpdateTest(test);
+    }
+
+    @PostMapping("/signInUsers/{userNumber}")
+    @CrossOrigin(origins = "*")
+    public ExecDetails signInUsers(@PathVariable Integer userNumber) {
+        return testService.signInUser(userNumber);
     }
 
     @PutMapping()

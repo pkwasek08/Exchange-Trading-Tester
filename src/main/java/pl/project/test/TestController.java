@@ -1,14 +1,20 @@
 package pl.project.test;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.project.execDetails.ExecDetails;
+import pl.project.execDetails.ExecMainDetails;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/test")
 public class TestController {
+    Logger log = LogManager.getLogger(this.getClass());
+
     @Autowired
     TestService testService;
 
@@ -26,8 +32,10 @@ public class TestController {
 
     @GetMapping("/simulate")
     @CrossOrigin(origins = "*")
-    public ExecDetails simulate(@RequestParam Integer numberUser, @RequestParam Integer numberSeries) {
-        return testService.simulate(numberUser, numberSeries);
+    public ExecMainDetails simulate(@RequestParam Integer numberUser, @RequestParam Integer numberSeries) {
+        Date startTask = new Date();
+        ExecDetails execDetails = testService.simulate(numberUser, numberSeries);
+        return new ExecMainDetails(execDetails, (int) (new Date().getTime() - startTask.getTime()));
     }
 
     @PostMapping()

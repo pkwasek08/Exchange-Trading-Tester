@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StockSellBuyLimit {
+public class OfferLimitDTO {
     private Integer amount;
     private String type;
     private Date date;

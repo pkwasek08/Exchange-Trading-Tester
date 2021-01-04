@@ -8,11 +8,13 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import pl.project.components.OfferLimitDTO;
 import pl.project.components.StockSellBuy;
-import pl.project.components.StockSellBuyLimit;
 import pl.project.components.User;
 import pl.project.execDetails.ExecDetails;
+import pl.project.execDetails.ExecDetailsOfferLimit;
 import pl.project.execDetails.ExecDetailsUser;
+import pl.project.execDetails.ExecDetailsUserStock;
 
 import java.sql.Timestamp;
 import java.util.*;
@@ -82,16 +84,13 @@ public class TestService {
         ExecDetails execDetails = new ExecDetails(0, 0);
         ExecDetailsUser execDetailsUser = signOnUsers(createNewUserList(numberUser));
         List<User> userList = execDetailsUser.getUserList();
-        log.info("1111111 " + execDetails);
-        updateExecDetails(execDetails, new ExecDetails(execDetails.getExeTime(), execDetails.getDbTime()));
-        log.info("22222222222 " + execDetails);
-        updateExecDetails(execDetails, buyStocks(createRandomUserList(userList), 10));
-        log.info("333333 " + execDetails);
+        updateExecDetails(execDetails, new ExecDetails(execDetailsUser.getExeTime(), execDetailsUser.getDbTime()));
+        updateExecDetails(execDetails, buyStocks(userList, 10));
         for (int i = 0; i < numberSeries; i++) {
+            updateExecDetails(execDetails, addBuyLimitOffer(userList));
+            updateExecDetails(execDetails, addSellLimitOffer(userList));
             updateExecDetails(execDetails, buyStocks(createRandomUserList(userList), null));
-            log.info("444444444 " + execDetails);
             updateExecDetails(execDetails, sellStocks(createRandomUserList(userList)));
-            log.info("55555555 " + execDetails);
         }
         return execDetails;
     }
@@ -127,26 +126,69 @@ public class TestService {
         return execDetails;
     }
 
-    public ExecDetails addBuyLimitOffer(List<User> userList, Integer stockNumber) {
+    public ExecDetails addBuyLimitOffer(List<User> userList) {
         ExecDetails execDetails = new ExecDetails(0, 0);
         for (User user : userList) {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-            int amount = isNull(stockNumber) ? random.nextInt(10) + 1 : stockNumber;
-            // rozwiązać problem z ceną limitową,
-            StockSellBuyLimit stockBuy = new StockSellBuyLimit(amount, "Buy", new Date(), 1, user.getId(), 110f);
+            ExecDetailsOfferLimit execDetailsOfferLimit = getFirstOfferLimit(1, "Sell");
+            updateExecDetails(execDetails, new ExecDetails(execDetailsOfferLimit.getExecDetails().getExeTime(), execDetailsOfferLimit.getExecDetails().getDbTime()));
+            int amount;
+            float price = execDetailsOfferLimit.getOfferLimitDTO().getPrice() * (1 - (random.nextInt(10) + 1) / 100);
+            if (execDetailsOfferLimit.getOfferLimitDTO().getAmount() >= 10) {
+                amount = random.nextInt(10) + 1;
+            } else {
+                amount = random.nextInt(execDetailsOfferLimit.getOfferLimitDTO().getAmount()) + 1;
+            }
+            OfferLimitDTO stockBuy = new OfferLimitDTO(amount, "Buy", new Date(), 1, user.getId(), price);
             HttpEntity<Object> requestEntity = new HttpEntity<Object>(stockBuy, headers);
-            ResponseEntity<ExecDetails> response = this.restTemplate.postForEntity("http://localhost:8080/offerSellBuyLimit/newOfferLimit", requestEntity, ExecDetails.class);
-            ExecDetails execDetailsBuyStock = new ExecDetails(response.getBody().getExeTime(), response.getBody().getDbTime());
-            execDetails.setDbTime(execDetails.getDbTime() + execDetailsBuyStock.getDbTime());
-            execDetails.setExeTime(execDetails.getExeTime() + execDetailsBuyStock.getExeTime());
+            this.restTemplate.postForEntity("http://localhost:8080/offerSellBuyLimit/newOfferLimit", requestEntity, ExecDetails.class);
         }
         return execDetails;
     }
 
-    public Integer getFirstOfferPrice(Integer companyId, String type) {
-        return 0;
+    public ExecDetails addSellLimitOffer(List<User> userList) {
+        ExecDetails execDetails = new ExecDetails(0, 0);
+        for (User user : userList) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            ExecDetailsUserStock execDetailsUserStock = getStockByUserIdAndCompanyId(user.getId(), 1);
+            updateExecDetails(execDetails, execDetailsUserStock.getExecDetails());
+            int amount;
+            float price = execDetailsUserStock.getUserStockDTO().getActualPrice() * (1 + (random.nextInt(10) + 1) / 100);
+            if (execDetailsUserStock.getUserStockDTO().getAmount() >= 10) {
+                amount = random.nextInt(10) + 1;
+            } else {
+                amount = random.nextInt(execDetailsUserStock.getUserStockDTO().getAmount()) + 1;
+            }
+            pl.project.components.OfferLimitDTO stockBuy = new pl.project.components.OfferLimitDTO(amount, "Sell", new Date(), 1, user.getId(), price);
+            HttpEntity<Object> requestEntity = new HttpEntity<Object>(stockBuy, headers);
+            this.restTemplate.postForEntity("http://localhost:8080/offerSellBuyLimit/newOfferLimit", requestEntity, ExecDetails.class);
+        }
+        return execDetails;
+    }
+
+    public ExecDetailsOfferLimit getFirstOfferLimit(Integer companyId, String type) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        if (type.equals("Buy")) {
+            ResponseEntity<ExecDetailsOfferLimit> response = this.restTemplate.getForEntity("http://localhost:8080/offerSellBuyLimit/buy/company/first/" + companyId, ExecDetailsOfferLimit.class);
+            return new ExecDetailsOfferLimit(response.getBody().getExecDetails(), response.getBody().getOfferLimitDTO());
+        } else {
+            ResponseEntity<ExecDetailsOfferLimit> response = this.restTemplate.getForEntity("http://localhost:8080/offerSellBuyLimit/sell/company/first/" + companyId, ExecDetailsOfferLimit.class);
+            return new ExecDetailsOfferLimit(response.getBody().getExecDetails(), response.getBody().getOfferLimitDTO());
+        }
+    }
+
+    public ExecDetailsUserStock getStockByUserIdAndCompanyId(Integer userId, Integer companyId) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        ResponseEntity<ExecDetailsUserStock> response = this.restTemplate.getForEntity("http://localhost:8080/stock/company/" + companyId + "/user/" + userId, ExecDetailsUserStock.class);
+        return new ExecDetailsUserStock(response.getBody().getExecDetails(), response.getBody().getUserStockDTO());
     }
 
     public ExecDetails sellStocks(List<User> userList) {

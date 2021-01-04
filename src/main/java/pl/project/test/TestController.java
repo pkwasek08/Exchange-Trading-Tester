@@ -24,6 +24,12 @@ public class TestController {
         return testService.getTest(id);
     }
 
+    @GetMapping("/simulate")
+    @CrossOrigin(origins = "*")
+    public ExecDetails simulate(@RequestParam Integer numberUser, @RequestParam Integer numberSeries) {
+        return testService.simulate(numberUser, numberSeries);
+    }
+
     @PostMapping()
     @CrossOrigin(origins = "*")
     public void addTest(@RequestBody Test test) {
@@ -32,8 +38,8 @@ public class TestController {
 
     @PostMapping("/signInUsers/{userNumber}")
     @CrossOrigin(origins = "*")
-    public ExecDetails signInUsers(@PathVariable Integer userNumber) {
-        return testService.signInUser(userNumber);
+    public ExecDetails signUpUsers(@PathVariable Integer userNumber) {
+        return testService.signOnUsers(userNumber);
     }
 
     @PutMapping()

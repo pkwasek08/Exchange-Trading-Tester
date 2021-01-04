@@ -16,10 +16,12 @@ public class User {
     private String password;
     private Float cash;
 
-    public User(String name, String lastname, String email, String password) {
+    public User(String name, String lastname, String email, String password, Float cash) {
         this.name = name;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
+        this.cash = cash;
+        this.created_at = new Timestamp(System.currentTimeMillis());
     }
 }

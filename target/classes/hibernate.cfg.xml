@@ -4,7 +4,6 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:postgresql://192.168.99.100:5432/tester</property>
     <property name="connection.driver_class">org.postgresql.Driver</property>
     <mapping class="pl.project.endpoints.Endpoint"/>
     <mapping class="pl.project.testParameters.TestParameter"/>

@@ -13,6 +13,6 @@ import java.util.List;
 public class ExecDetailsUser {
     private Integer exeTime;
     private Integer dbTime;
+    private User user;
     private List<User> userList;
-
 }

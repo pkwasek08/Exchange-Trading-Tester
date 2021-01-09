@@ -1,12 +1,14 @@
 package pl.project.test;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.project.endpoints.Endpoint;
 import pl.project.testParameters.TestParameter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @AllArgsConstructor
@@ -19,11 +21,12 @@ public class Test {
     private Integer apiTestTime;
     private BigDecimal avgCpuUsed;
     private BigDecimal avgRamUsed;
+    private Date date;
     private TestParameter testParameter;
     private Endpoint endpoint;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -83,6 +86,16 @@ public class Test {
         this.avgRamUsed = avgRamUsed;
     }
 
+    @Basic
+    @Column(name = "date", nullable = true)
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -98,6 +111,7 @@ public class Test {
         if (apiTestTime != null ? !apiTestTime.equals(test.apiTestTime) : test.apiTestTime != null) return false;
         if (avgCpuUsed != null ? !avgCpuUsed.equals(test.avgCpuUsed) : test.avgCpuUsed != null) return false;
         if (avgRamUsed != null ? !avgRamUsed.equals(test.avgRamUsed) : test.avgRamUsed != null) return false;
+        if (date != null ? !date.equals(test.date) : test.date != null) return false;
 
         return true;
     }
@@ -110,6 +124,7 @@ public class Test {
         result = 31 * result + (apiTestTime != null ? apiTestTime.hashCode() : 0);
         result = 31 * result + (avgCpuUsed != null ? avgCpuUsed.hashCode() : 0);
         result = 31 * result + (avgRamUsed != null ? avgRamUsed.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
     }
 

@@ -6,6 +6,7 @@ CREATE TABLE "tests" (
                          "endpoint_id" integer,
                          "database_test_time" integer,
                          "application_test_time" integer,
+                         "date" timestamp,
                          "api_test_time" integer,
                          "avg_cpu_used" numeric(6,2),
                          "avg_ram_used" numeric(6,2)
@@ -23,6 +24,7 @@ DROP TABLE IF EXISTS "test_parameters" CASCADE;
 CREATE TABLE "test_parameters" (
                                    "id" SERIAL PRIMARY KEY,
                                    "number_of_users" integer,
+                                   "series" integer,
                                    "test_name" varchar,
                                    "number_of_requests" integer,
                                    "min_buy_price" numeric(10,4),

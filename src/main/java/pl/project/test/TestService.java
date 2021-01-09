@@ -43,8 +43,8 @@ public class TestService {
         return testRepository.findById(id).get();
     }
 
-    public void addUpdateTest(Test test) {
-        testRepository.save(test);
+    public Test addUpdateTest(Test test) {
+        return testRepository.save(test);
     }
 
     public void deleteTest(Integer id) {
@@ -87,7 +87,7 @@ public class TestService {
     }
 
     public TestDetails simulate(Integer numberUser, Integer numberSeries) {
-        TestDetails testDetails = new TestDetails(new ExecDetails(0, 0), new PriceDetails(0, 100000f, 0f, 100000f, 0f, 0));
+        TestDetails testDetails = new TestDetails(new ExecDetails(0, 0), new PriceDetails(100000f, 0f, 100000f, 0f, 0),0);
         ExecDetailsUser execDetailsUser = signOnUsers(createNewUserList(numberUser));
         List<User> userList = execDetailsUser.getUserList();
         updateExecDetails(testDetails.getExecDetails(), new ExecDetails(execDetailsUser.getExeTime(), execDetailsUser.getDbTime()));
@@ -136,7 +136,7 @@ public class TestService {
             }
         }
         mainExecDetails.getPriceDetails().setVolumes(mainExecDetails.getPriceDetails().getVolumes() + transactionDetails.getAmount());
-        mainExecDetails.getPriceDetails().setNumberOfRequests(mainExecDetails.getPriceDetails().getNumberOfRequests() + transactionDetails.getNumberRequest());
+        mainExecDetails.setNumberOfRequests(mainExecDetails.getNumberOfRequests() + transactionDetails.getNumberRequest());
 
         mainExecDetails.getExecDetails().setDbTime(mainExecDetails.getExecDetails().getDbTime() + transactionDetails.getExecDetails().getDbTime());
         mainExecDetails.getExecDetails().setExeTime(mainExecDetails.getExecDetails().getExeTime() + transactionDetails.getExecDetails().getExeTime());

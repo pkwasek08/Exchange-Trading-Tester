@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PriceDetails {
-    private Integer numberOfRequests;
     private Float minBuyPrice;
     private Float maxBuyPrice;
     private Float minSellPrice;

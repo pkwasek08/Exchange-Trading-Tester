@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 public class TestParameter {
     private int id;
     private Integer numberOfUsers;
+    private Integer series;
     private String testName;
     private Integer numberOfRequests;
     private Float minBuyPrice;
@@ -40,6 +41,16 @@ public class TestParameter {
 
     public void setNumberOfUsers(Integer numberOfUsers) {
         this.numberOfUsers = numberOfUsers;
+    }
+
+    @Basic
+    @Column(name = "series", nullable = true)
+    public Integer getSeries() {
+        return series;
+    }
+
+    public void setSeries(Integer series) {
+        this.series = series;
     }
 
     @Basic
@@ -130,6 +141,7 @@ public class TestParameter {
         if (minSellPrice != null ? !minSellPrice.equals(that.minSellPrice) : that.minSellPrice != null) return false;
         if (maxSellPrice != null ? !maxSellPrice.equals(that.maxSellPrice) : that.maxSellPrice != null) return false;
         if (volumes != null ? !volumes.equals(that.volumes) : that.volumes != null) return false;
+        if (series != null ? !series.equals(that.series) : that.series != null) return false;
 
         return true;
     }
@@ -145,6 +157,7 @@ public class TestParameter {
         result = 31 * result + (minSellPrice != null ? minSellPrice.hashCode() : 0);
         result = 31 * result + (maxSellPrice != null ? maxSellPrice.hashCode() : 0);
         result = 31 * result + (volumes != null ? volumes.hashCode() : 0);
+        result = 31 * result + (series != null ? series.hashCode() : 0);
         return result;
     }
 }

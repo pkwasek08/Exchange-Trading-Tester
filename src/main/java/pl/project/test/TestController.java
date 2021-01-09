@@ -31,6 +31,12 @@ public class TestController {
         return testService.getAllTest();
     }
 
+    @GetMapping("/AllDetails")
+    @CrossOrigin(origins = "*")
+    public List<ExecMainDetails> getAllTestDetails() {
+        return ExecMainDetails.map(testService.getAllTest());
+    }
+
     @GetMapping("/{id}")
     @CrossOrigin(origins = "*")
     public Test getTest(@PathVariable Integer id) {
@@ -39,16 +45,16 @@ public class TestController {
 
     @GetMapping("/simulate")
     @CrossOrigin(origins = "*")
-    public ExecMainDetails simulate(@RequestParam Integer numberUser, @RequestParam Integer numberSeries) {
+    public ExecMainDetails simulate(@RequestParam Integer numberUser, @RequestParam Integer numberSeries, @RequestParam String testName) {
         Date startTask = new Date();
         SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         TestDetails testDetails = testService.simulate(numberUser, numberSeries);
         int fullTimeTask = (int) (new Date().getTime() - startTask.getTime());
-        testService.addUpdateTest(new Test(0, testDetails.getExecDetails().getDbTime(), fullTimeTask, testDetails.getExecDetails().getExeTime(), null, null,
-                testParameterService.addUpdateTestParameter(new TestParameter(0, numberUser, "simulate " + dt.format(startTask),
-                        testDetails.getPriceDetails().getNumberOfRequests(),  testDetails.getPriceDetails().getMinBuyPrice(),  testDetails.getPriceDetails().getMaxBuyPrice(),
-                        testDetails.getPriceDetails().getMinSellPrice(),  testDetails.getPriceDetails().getMaxSellPrice(),  testDetails.getPriceDetails().getVolumes())), null));
-        return new ExecMainDetails(testDetails.getExecDetails(), fullTimeTask);
+        Test test = testService.addUpdateTest(new Test(0, testDetails.getExecDetails().getDbTime(), fullTimeTask, testDetails.getExecDetails().getExeTime(), null, null, new Date(),
+                testParameterService.addUpdateTestParameter(new TestParameter(0, numberUser, numberSeries, testName,
+                        testDetails.getNumberOfRequests(), testDetails.getPriceDetails().getMinBuyPrice(), testDetails.getPriceDetails().getMaxBuyPrice(),
+                        testDetails.getPriceDetails().getMinSellPrice(), testDetails.getPriceDetails().getMaxSellPrice(), testDetails.getPriceDetails().getVolumes())), null));
+        return ExecMainDetails.map(test);
     }
 
     @PostMapping()

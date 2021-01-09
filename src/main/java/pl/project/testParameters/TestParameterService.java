@@ -25,8 +25,8 @@ public class TestParameterService {
         return testParameterRepository.findById(id).get();
     }
 
-    public void addUpdateTestParameter(TestParameter testParameter) {
-        testParameterRepository.save(testParameter);
+    public TestParameter addUpdateTestParameter(TestParameter testParameter) {
+        return testParameterRepository.save(testParameter);
     }
 
 

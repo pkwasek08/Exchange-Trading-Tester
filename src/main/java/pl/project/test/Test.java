@@ -1,5 +1,7 @@
 package pl.project.test;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import pl.project.endpoints.Endpoint;
 import pl.project.testParameters.TestParameter;
 
@@ -7,10 +9,11 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "tests")
 public class Test {
     private int id;
-    private Integer userId;
     private Integer databaseTestTime;
     private Integer applicationTestTime;
     private Integer apiTestTime;
@@ -28,16 +31,6 @@ public class Test {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "user_id", nullable = true)
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     @Basic
@@ -98,7 +91,6 @@ public class Test {
         Test test = (Test) o;
 
         if (id != test.id) return false;
-        if (userId != null ? !userId.equals(test.userId) : test.userId != null) return false;
         if (databaseTestTime != null ? !databaseTestTime.equals(test.databaseTestTime) : test.databaseTestTime != null)
             return false;
         if (applicationTestTime != null ? !applicationTestTime.equals(test.applicationTestTime) : test.applicationTestTime != null)
@@ -113,7 +105,6 @@ public class Test {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + (databaseTestTime != null ? databaseTestTime.hashCode() : 0);
         result = 31 * result + (applicationTestTime != null ? applicationTestTime.hashCode() : 0);
         result = 31 * result + (apiTestTime != null ? apiTestTime.hashCode() : 0);

@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.project.execDetails.ExecDetails;
 import pl.project.execDetails.ExecMainDetails;
+import pl.project.execDetails.TestDetails;
+import pl.project.testParameters.TestParameter;
+import pl.project.testParameters.TestParameterService;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +21,9 @@ public class TestController {
 
     @Autowired
     TestService testService;
+    @Autowired
+    TestParameterService testParameterService;
+
 
     @GetMapping()
     @CrossOrigin(origins = "*")
@@ -34,8 +41,14 @@ public class TestController {
     @CrossOrigin(origins = "*")
     public ExecMainDetails simulate(@RequestParam Integer numberUser, @RequestParam Integer numberSeries) {
         Date startTask = new Date();
-        ExecDetails execDetails = testService.simulate(numberUser, numberSeries);
-        return new ExecMainDetails(execDetails, (int) (new Date().getTime() - startTask.getTime()));
+        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        TestDetails testDetails = testService.simulate(numberUser, numberSeries);
+        int fullTimeTask = (int) (new Date().getTime() - startTask.getTime());
+        testService.addUpdateTest(new Test(0, testDetails.getExecDetails().getDbTime(), fullTimeTask, testDetails.getExecDetails().getExeTime(), null, null,
+                testParameterService.addUpdateTestParameter(new TestParameter(0, numberUser, "simulate " + dt.format(startTask),
+                        testDetails.getPriceDetails().getNumberOfRequests(),  testDetails.getPriceDetails().getMinBuyPrice(),  testDetails.getPriceDetails().getMaxBuyPrice(),
+                        testDetails.getPriceDetails().getMinSellPrice(),  testDetails.getPriceDetails().getMaxSellPrice(),  testDetails.getPriceDetails().getVolumes())), null));
+        return new ExecMainDetails(testDetails.getExecDetails(), fullTimeTask);
     }
 
     @PostMapping()

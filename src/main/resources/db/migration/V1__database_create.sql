@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS "test" CASCADE;
-CREATE TABLE "test" (
+CREATE TABLE "tests" (
                          "id" SERIAL PRIMARY KEY,
                          "user_id" integer,
                          "test_parameters_id" integer,
@@ -12,7 +12,7 @@ CREATE TABLE "test" (
 );
 
 DROP TABLE IF EXISTS "endpoint" CASCADE;
-CREATE TABLE "endpoint" (
+CREATE TABLE "endpoints" (
                              "id" SERIAL PRIMARY KEY,
                              "endpoint" varchar,
                              "http_method" varchar,
@@ -32,6 +32,6 @@ CREATE TABLE "test_parameters" (
                                    "volumes" integer
 );
 
-ALTER TABLE "test" ADD FOREIGN KEY ("test_parameters_id") REFERENCES "test_parameters" ("id");
+ALTER TABLE "tests" ADD FOREIGN KEY ("test_parameters_id") REFERENCES "test_parameters" ("id");
 
-ALTER TABLE "test" ADD FOREIGN KEY ("endpoint_id") REFERENCES "endpoint" ("id");
+ALTER TABLE "tests" ADD FOREIGN KEY ("endpoint_id") REFERENCES "endpoints" ("id");

@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.17">
     <root id="1">
       <ServerVersion>13.1</ServerVersion>
-      <StartupTime>1609375099</StartupTime>
+      <StartupTime>1609956776</StartupTime>
     </root>
     <database id="2" parent="1" name="postgres">
       <ObjectId>13395</ObjectId>
@@ -13,11 +13,11 @@
     <database id="3" parent="1" name="tester">
       <ObjectId>16384</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>491</IntrospectionStateNumber>
+      <IntrospectionStateNumber>492</IntrospectionStateNumber>
       <Current>1</Current>
-      <Relations>sequence|table|16395|16397|1
-sequence|table|16403|16405|1
-sequence|table|16414|16416|1
+      <Relations>sequence|table|16425|16427|1
+sequence|table|16433|16435|1
+sequence|table|16444|16446|1
 </Relations>
     </database>
     <role id="4" parent="1" name="pg_execute_server_program">
@@ -69,7 +69,7 @@ sequence|table|16414|16416|1
       <Comment>standard public schema</Comment>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>492</IntrospectionStateNumber>
+      <IntrospectionStateNumber>493</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="16" parent="3" name="heap">
@@ -135,142 +135,142 @@ sequence|table|16414|16416|1
       <SchemaName>pg_catalog</SchemaName>
       <SchemaId>11</SchemaId>
     </extension>
-    <sequence id="24" parent="15" name="endpoint_id_seq">
-      <ObjectId>16403</ObjectId>
-      <StateNumber>490</StateNumber>
+    <sequence id="24" parent="15" name="endpoints_id_seq">
+      <ObjectId>16433</ObjectId>
+      <StateNumber>489</StateNumber>
       <Owner>postgres</Owner>
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="25" parent="15" name="test_id_seq">
-      <ObjectId>16395</ObjectId>
-      <StateNumber>490</StateNumber>
+    <sequence id="25" parent="15" name="test_parameters_id_seq">
+      <ObjectId>16444</ObjectId>
+      <StateNumber>489</StateNumber>
       <Owner>postgres</Owner>
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="26" parent="15" name="test_parameters_id_seq">
-      <ObjectId>16414</ObjectId>
-      <StateNumber>490</StateNumber>
+    <sequence id="26" parent="15" name="tests_id_seq">
+      <ObjectId>16425</ObjectId>
+      <StateNumber>489</StateNumber>
       <Owner>postgres</Owner>
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <table id="27" parent="15" name="endpoint">
-      <ObjectId>16405</ObjectId>
+    <table id="27" parent="15" name="endpoints">
+      <ObjectId>16435</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>490</StateNumber>
+      <StateNumber>489</StateNumber>
     </table>
     <table id="28" parent="15" name="flyway_schema_history">
       <ObjectId>16385</ObjectId>
       <Owner>postgres</Owner>
+      <StateNumber>487</StateNumber>
+    </table>
+    <table id="29" parent="15" name="test_parameters">
+      <ObjectId>16446</ObjectId>
+      <Owner>postgres</Owner>
       <StateNumber>489</StateNumber>
     </table>
-    <table id="29" parent="15" name="test">
-      <ObjectId>16397</ObjectId>
+    <table id="30" parent="15" name="tests">
+      <ObjectId>16427</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>490</StateNumber>
-    </table>
-    <table id="30" parent="15" name="test_parameters">
-      <ObjectId>16416</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>490</StateNumber>
+      <StateNumber>489</StateNumber>
     </table>
     <column id="31" parent="27" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>490</StateNumber>
-      <DefaultExpression>nextval(&apos;endpoint_id_seq&apos;::regclass)</DefaultExpression>
+      <StateNumber>489</StateNumber>
+      <DefaultExpression>nextval(&apos;endpoints_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
     <column id="32" parent="27" name="endpoint">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
-      <StateNumber>490</StateNumber>
+      <StateNumber>489</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="33" parent="27" name="http_method">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
-      <StateNumber>490</StateNumber>
+      <StateNumber>489</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="34" parent="27" name="parameters">
       <Position>4</Position>
       <DataType>varchar|0s</DataType>
-      <StateNumber>490</StateNumber>
+      <StateNumber>489</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="35" parent="27" name="endpoint_pkey">
-      <ObjectId>16412</ObjectId>
-      <StateNumber>490</StateNumber>
+    <index id="35" parent="27" name="endpoints_pkey">
+      <ObjectId>16442</ObjectId>
+      <StateNumber>489</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="36" parent="27" name="endpoint_pkey">
-      <ObjectId>16413</ObjectId>
-      <StateNumber>490</StateNumber>
+    <key id="36" parent="27" name="endpoints_pkey">
+      <ObjectId>16443</ObjectId>
+      <StateNumber>489</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
-      <UnderlyingIndexName>endpoint_pkey</UnderlyingIndexName>
+      <UnderlyingIndexName>endpoints_pkey</UnderlyingIndexName>
     </key>
     <column id="37" parent="28" name="installed_rank">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="38" parent="28" name="version">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="39" parent="28" name="description">
       <Position>3</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="40" parent="28" name="type">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="41" parent="28" name="script">
       <Position>5</Position>
       <DataType>varchar(1000)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="42" parent="28" name="checksum">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="43" parent="28" name="installed_by">
       <Position>7</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="44" parent="28" name="installed_on">
       <Position>8</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <DefaultExpression>now()</DefaultExpression>
       <TypeId>1114</TypeId>
     </column>
@@ -278,31 +278,31 @@ sequence|table|16414|16416|1
       <Position>9</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="46" parent="28" name="success">
       <Position>10</Position>
       <DataType>boolean|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <TypeId>16</TypeId>
     </column>
     <index id="47" parent="28" name="flyway_schema_history_pk">
       <ObjectId>16392</ObjectId>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <ColNames>installed_rank</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
     <index id="48" parent="28" name="flyway_schema_history_s_idx">
       <ObjectId>16394</ObjectId>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <ColNames>success</ColNames>
     </index>
     <key id="49" parent="28" name="flyway_schema_history_pk">
       <ObjectId>16393</ObjectId>
-      <StateNumber>489</StateNumber>
+      <StateNumber>487</StateNumber>
       <ColNames>installed_rank</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>flyway_schema_history_pk</UnderlyingIndexName>
@@ -311,161 +311,161 @@ sequence|table|16414|16416|1
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>490</StateNumber>
-      <DefaultExpression>nextval(&apos;test_id_seq&apos;::regclass)</DefaultExpression>
+      <StateNumber>489</StateNumber>
+      <DefaultExpression>nextval(&apos;test_parameters_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="51" parent="29" name="user_id">
+    <column id="51" parent="29" name="number_of_users">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>490</StateNumber>
+      <StateNumber>489</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="52" parent="29" name="test_parameters_id">
+    <column id="52" parent="29" name="test_name">
       <Position>3</Position>
-      <DataType>integer|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>23</TypeId>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>1043</TypeId>
     </column>
-    <column id="53" parent="29" name="endpoint_id">
+    <column id="53" parent="29" name="number_of_requests">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>490</StateNumber>
+      <StateNumber>489</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="54" parent="29" name="database_test_time">
+    <column id="54" parent="29" name="min_buy_price">
       <Position>5</Position>
-      <DataType>integer|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>23</TypeId>
+      <DataType>numeric(10,4 digit)|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>1700</TypeId>
     </column>
-    <column id="55" parent="29" name="application_test_time">
+    <column id="55" parent="29" name="max_buy_price">
       <Position>6</Position>
-      <DataType>integer|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>23</TypeId>
+      <DataType>numeric(10,4 digit)|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>1700</TypeId>
     </column>
-    <column id="56" parent="29" name="api_test_time">
+    <column id="56" parent="29" name="min_sell_price">
       <Position>7</Position>
+      <DataType>numeric(10,4 digit)|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>1700</TypeId>
+    </column>
+    <column id="57" parent="29" name="max_sell_price">
+      <Position>8</Position>
+      <DataType>numeric(10,4 digit)|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>1700</TypeId>
+    </column>
+    <column id="58" parent="29" name="volumes">
+      <Position>9</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>490</StateNumber>
+      <StateNumber>489</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="57" parent="29" name="avg_cpu_used">
-      <Position>8</Position>
-      <DataType>numeric(6,2 digit)|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>1700</TypeId>
-    </column>
-    <column id="58" parent="29" name="avg_ram_used">
-      <Position>9</Position>
-      <DataType>numeric(6,2 digit)|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>1700</TypeId>
-    </column>
-    <index id="59" parent="29" name="test_pkey">
-      <ObjectId>16401</ObjectId>
-      <StateNumber>490</StateNumber>
+    <index id="59" parent="29" name="test_parameters_pkey">
+      <ObjectId>16453</ObjectId>
+      <StateNumber>489</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="60" parent="29" name="test_pkey">
-      <ObjectId>16402</ObjectId>
-      <StateNumber>490</StateNumber>
+    <key id="60" parent="29" name="test_parameters_pkey">
+      <ObjectId>16454</ObjectId>
+      <StateNumber>489</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
-      <UnderlyingIndexName>test_pkey</UnderlyingIndexName>
+      <UnderlyingIndexName>test_parameters_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="61" parent="29" name="test_test_parameters_id_fkey">
-      <ObjectId>16425</ObjectId>
-      <StateNumber>490</StateNumber>
+    <column id="61" parent="30" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>489</StateNumber>
+      <DefaultExpression>nextval(&apos;tests_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="62" parent="30" name="user_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="63" parent="30" name="test_parameters_id">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="64" parent="30" name="endpoint_id">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="65" parent="30" name="database_test_time">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="66" parent="30" name="application_test_time">
+      <Position>6</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="67" parent="30" name="api_test_time">
+      <Position>7</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="68" parent="30" name="avg_cpu_used">
+      <Position>8</Position>
+      <DataType>numeric(6,2 digit)|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>1700</TypeId>
+    </column>
+    <column id="69" parent="30" name="avg_ram_used">
+      <Position>9</Position>
+      <DataType>numeric(6,2 digit)|0s</DataType>
+      <StateNumber>489</StateNumber>
+      <TypeId>1700</TypeId>
+    </column>
+    <index id="70" parent="30" name="tests_pkey">
+      <ObjectId>16431</ObjectId>
+      <StateNumber>489</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="71" parent="30" name="tests_pkey">
+      <ObjectId>16432</ObjectId>
+      <StateNumber>489</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>tests_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="72" parent="30" name="tests_test_parameters_id_fkey">
+      <ObjectId>16455</ObjectId>
+      <StateNumber>489</StateNumber>
       <ColNames>test_parameters_id</ColNames>
-      <RefTableId>16416</RefTableId>
+      <RefTableId>16446</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>test_parameters</RefTableName>
       <RefKeyName>test_parameters_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="62" parent="29" name="test_endpoint_id_fkey">
-      <ObjectId>16430</ObjectId>
-      <StateNumber>490</StateNumber>
+    <foreign-key id="73" parent="30" name="tests_endpoint_id_fkey">
+      <ObjectId>16460</ObjectId>
+      <StateNumber>489</StateNumber>
       <ColNames>endpoint_id</ColNames>
-      <RefTableId>16405</RefTableId>
+      <RefTableId>16435</RefTableId>
       <RefColPositions>1</RefColPositions>
-      <RefTableName>endpoint</RefTableName>
-      <RefKeyName>endpoint_pkey</RefKeyName>
+      <RefTableName>endpoints</RefTableName>
+      <RefKeyName>endpoints_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="63" parent="30" name="id">
-      <Position>1</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>490</StateNumber>
-      <DefaultExpression>nextval(&apos;test_parameters_id_seq&apos;::regclass)</DefaultExpression>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="64" parent="30" name="number_of_users">
-      <Position>2</Position>
-      <DataType>integer|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="65" parent="30" name="test_name">
-      <Position>3</Position>
-      <DataType>varchar|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="66" parent="30" name="number_of_requests">
-      <Position>4</Position>
-      <DataType>integer|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="67" parent="30" name="min_buy_price">
-      <Position>5</Position>
-      <DataType>numeric(10,4 digit)|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>1700</TypeId>
-    </column>
-    <column id="68" parent="30" name="max_buy_price">
-      <Position>6</Position>
-      <DataType>numeric(10,4 digit)|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>1700</TypeId>
-    </column>
-    <column id="69" parent="30" name="min_sell_price">
-      <Position>7</Position>
-      <DataType>numeric(10,4 digit)|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>1700</TypeId>
-    </column>
-    <column id="70" parent="30" name="max_sell_price">
-      <Position>8</Position>
-      <DataType>numeric(10,4 digit)|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>1700</TypeId>
-    </column>
-    <column id="71" parent="30" name="volumes">
-      <Position>9</Position>
-      <DataType>integer|0s</DataType>
-      <StateNumber>490</StateNumber>
-      <TypeId>23</TypeId>
-    </column>
-    <index id="72" parent="30" name="test_parameters_pkey">
-      <ObjectId>16423</ObjectId>
-      <StateNumber>490</StateNumber>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-      <Primary>1</Primary>
-    </index>
-    <key id="73" parent="30" name="test_parameters_pkey">
-      <ObjectId>16424</ObjectId>
-      <StateNumber>490</StateNumber>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>test_parameters_pkey</UnderlyingIndexName>
-    </key>
   </database-model>
 </dataSource>

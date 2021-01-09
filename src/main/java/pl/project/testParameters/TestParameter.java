@@ -1,19 +1,24 @@
 package pl.project.testParameters;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "test_parameters")
 public class TestParameter {
     private int id;
     private Integer numberOfUsers;
     private String testName;
     private Integer numberOfRequests;
-    private BigDecimal minBuyPrice;
-    private BigDecimal maxBuyPrice;
-    private BigDecimal minSellPrice;
-    private BigDecimal maxSellPrice;
+    private Float minBuyPrice;
+    private Float maxBuyPrice;
+    private Float minSellPrice;
+    private Float maxSellPrice;
     private Integer volumes;
 
     @Id
@@ -59,41 +64,41 @@ public class TestParameter {
 
     @Basic
     @Column(name = "min_buy_price", nullable = true, precision = 4)
-    public BigDecimal getMinBuyPrice() {
+    public Float getMinBuyPrice() {
         return minBuyPrice;
     }
 
-    public void setMinBuyPrice(BigDecimal minBuyPrice) {
+    public void setMinBuyPrice(Float minBuyPrice) {
         this.minBuyPrice = minBuyPrice;
     }
 
     @Basic
     @Column(name = "max_buy_price", nullable = true, precision = 4)
-    public BigDecimal getMaxBuyPrice() {
+    public Float getMaxBuyPrice() {
         return maxBuyPrice;
     }
 
-    public void setMaxBuyPrice(BigDecimal maxBuyPrice) {
+    public void setMaxBuyPrice(Float maxBuyPrice) {
         this.maxBuyPrice = maxBuyPrice;
     }
 
     @Basic
     @Column(name = "min_sell_price", nullable = true, precision = 4)
-    public BigDecimal getMinSellPrice() {
+    public Float getMinSellPrice() {
         return minSellPrice;
     }
 
-    public void setMinSellPrice(BigDecimal minSellPrice) {
+    public void setMinSellPrice(Float minSellPrice) {
         this.minSellPrice = minSellPrice;
     }
 
     @Basic
     @Column(name = "max_sell_price", nullable = true, precision = 4)
-    public BigDecimal getMaxSellPrice() {
+    public Float getMaxSellPrice() {
         return maxSellPrice;
     }
 
-    public void setMaxSellPrice(BigDecimal maxSellPrice) {
+    public void setMaxSellPrice(Float maxSellPrice) {
         this.maxSellPrice = maxSellPrice;
     }
 

@@ -11,4 +11,5 @@ public class TestDetails {
     private ExecDetails execDetails;
     private PriceDetails priceDetails;
     private Integer numberOfRequests;
+    private String companyName;
 }

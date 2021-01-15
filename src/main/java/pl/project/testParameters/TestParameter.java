@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @AllArgsConstructor
@@ -14,6 +13,10 @@ public class TestParameter {
     private int id;
     private Integer numberOfUsers;
     private Integer series;
+    private Integer companyId;
+    private String companyName;
+    private Integer startUserMoney;
+    private Integer startStockNumber;
     private String testName;
     private Integer numberOfRequests;
     private Float minBuyPrice;
@@ -23,7 +26,7 @@ public class TestParameter {
     private Integer volumes;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -123,6 +126,46 @@ public class TestParameter {
         this.volumes = volumes;
     }
 
+    @Basic
+    @Column(name = "company_id", nullable = true)
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
+    }
+
+    @Basic
+    @Column(name = "start_user_money", nullable = true)
+    public Integer getStartUserMoney() {
+        return startUserMoney;
+    }
+
+    public void setStartUserMoney(Integer startUSerMoney) {
+        this.startUserMoney = startUSerMoney;
+    }
+
+    @Basic
+    @Column(name = "start_stock_number", nullable = true)
+    public Integer getStartStockNumber() {
+        return startStockNumber;
+    }
+
+    public void setStartStockNumber(Integer startStockNumber) {
+        this.startStockNumber = startStockNumber;
+    }
+
+    @Basic
+    @Column(name = "company_name", nullable = true)
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -142,6 +185,10 @@ public class TestParameter {
         if (maxSellPrice != null ? !maxSellPrice.equals(that.maxSellPrice) : that.maxSellPrice != null) return false;
         if (volumes != null ? !volumes.equals(that.volumes) : that.volumes != null) return false;
         if (series != null ? !series.equals(that.series) : that.series != null) return false;
+        if (companyId != null ? !companyId.equals(that.companyId) : that.companyId != null) return false;
+        if (startUserMoney != null ? !startUserMoney.equals(that.startUserMoney) : that.startUserMoney != null) return false;
+        if (startStockNumber != null ? !startStockNumber.equals(that.startStockNumber) : that.startStockNumber != null) return false;
+        if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
 
         return true;
     }
@@ -158,6 +205,10 @@ public class TestParameter {
         result = 31 * result + (maxSellPrice != null ? maxSellPrice.hashCode() : 0);
         result = 31 * result + (volumes != null ? volumes.hashCode() : 0);
         result = 31 * result + (series != null ? series.hashCode() : 0);
+        result = 31 * result + (companyId != null ? companyId.hashCode() : 0);
+        result = 31 * result + (startUserMoney != null ? startUserMoney.hashCode() : 0);
+        result = 31 * result + (startStockNumber != null ? startStockNumber.hashCode() : 0);
+        result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
         return result;
     }
 }

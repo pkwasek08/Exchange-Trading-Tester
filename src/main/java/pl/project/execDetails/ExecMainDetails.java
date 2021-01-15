@@ -22,6 +22,9 @@ public class ExecMainDetails {
     private Integer userNumber;
     private Integer series;
     private Date date;
+    private Integer startUserMoney;
+    private Integer startNumberStock;
+    private String companyName;
     private Integer numberOfRequests;
     private PriceDetails priceDetails;
 
@@ -30,7 +33,7 @@ public class ExecMainDetails {
         testList.forEach(test -> {
             TestParameter testParameter = test.getTestParameter();
             execMainDetailsList.add(new ExecMainDetails(testParameter.getTestName(), test.getApiTestTime(), test.getDatabaseTestTime(), test.getApplicationTestTime(), testParameter.getNumberOfUsers(), testParameter.getSeries(),
-                    test.getDate(), testParameter.getNumberOfRequests(),
+                    test.getDate(), testParameter.getStartUserMoney(), testParameter.getStartStockNumber(), testParameter.getCompanyName(), testParameter.getNumberOfRequests(),
                     new PriceDetails(testParameter.getMinBuyPrice(), testParameter.getMaxBuyPrice(), testParameter.getMinSellPrice(), testParameter.getMaxSellPrice(), testParameter.getVolumes())));
         });
         return execMainDetailsList;
@@ -39,7 +42,7 @@ public class ExecMainDetails {
     public static ExecMainDetails map(Test test) {
         TestParameter testParameter = test.getTestParameter();
         return new ExecMainDetails(testParameter.getTestName(), test.getApiTestTime(), test.getDatabaseTestTime(), test.getApplicationTestTime(), testParameter.getNumberOfUsers(), testParameter.getSeries(),
-                test.getDate(), testParameter.getNumberOfRequests(),
+                test.getDate(), testParameter.getStartUserMoney(), testParameter.getStartStockNumber(), testParameter.getCompanyName(), testParameter.getNumberOfRequests(),
                 new PriceDetails(testParameter.getMinBuyPrice(), testParameter.getMaxBuyPrice(), testParameter.getMinSellPrice(), testParameter.getMaxSellPrice(), testParameter.getVolumes()));
     }
 }

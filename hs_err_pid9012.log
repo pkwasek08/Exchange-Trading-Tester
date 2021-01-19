@@ -1,0 +1,205 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 268435456 bytes for Failed to commit area from 0x0000000701c00000 to 0x0000000711c00000 of length 268435456.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (c:/BuildAgent/work/5ff2f6c26000d570/src/hotspot/os/windows/os_windows.cpp:3296), pid=9012, tid=2692
+#
+# JRE version:  (11.0.6+8) (build )
+# Java VM: OpenJDK 64-Bit Server VM (11.0.6+8-b520.43, mixed mode, sharing, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -XX:TieredStopAtLevel=1 -Xverify:none -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\lib\idea_rt.jar=59967:C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\bin -Dfile.encoding=UTF-8 pl.project.ExchangeTradingTesterApplication
+
+Host: Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz, 4 cores, 15G,  Windows 10 , 64 bit Build 18362 (10.0.18362.1316)
+Time: Mon Jan 18 22:10:50 2021 Central European Standard Time elapsed time: 0 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000111b007f800):  JavaThread "Unknown thread" [_thread_in_vm, id=2692, stack(0x0000000f3d300000,0x0000000f3d400000)]
+
+Stack: [0x0000000f3d300000,0x0000000f3d400000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x5de31a]
+V  [jvm.dll+0x710ae5]
+V  [jvm.dll+0x712005]
+V  [jvm.dll+0x7126b3]
+V  [jvm.dll+0x23e3a8]
+V  [jvm.dll+0x5db814]
+V  [jvm.dll+0x5d0a35]
+V  [jvm.dll+0x2faeeb]
+V  [jvm.dll+0x2fae5a]
+V  [jvm.dll+0x2fad32]
+V  [jvm.dll+0x2ffc06]
+V  [jvm.dll+0x348483]
+V  [jvm.dll+0x348b86]
+V  [jvm.dll+0x348583]
+V  [jvm.dll+0x2d57b8]
+V  [jvm.dll+0x2d6957]
+V  [jvm.dll+0x6ef8a7]
+V  [jvm.dll+0x6f109c]
+V  [jvm.dll+0x355a79]
+V  [jvm.dll+0x6d49ee]
+V  [jvm.dll+0x3bf0a3]
+V  [jvm.dll+0x3c15c1]
+C  [jli.dll+0x5363]
+C  [ucrtbase.dll+0x210b2]
+C  [KERNEL32.DLL+0x17c24]
+C  [ntdll.dll+0x6d4d1]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00000111adfd3370, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x00000111b009b000 GCTaskThread "GC Thread#0" [stack: 0x0000000f3d400000,0x0000000f3d500000] [id=3704]
+  0x00000111b00f6800 ConcurrentGCThread "G1 Main Marker" [stack: 0x0000000f3d500000,0x0000000f3d600000] [id=15652]
+  0x00000111b00f9000 ConcurrentGCThread "G1 Conc#0" [stack: 0x0000000f3d600000,0x0000000f3d700000] [id=4544]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffc80df6027]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00000111b007be30] Heap_lock - owner thread: 0x00000111b007f800
+
+Heap address: 0x0000000701c00000, size: 4068 MB, Compressed Oops mode: Non-zero based: 0x0000000701c00000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (2 events):
+Event: 0.100 Loaded shared library C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\zip.dll
+Event: 0.101 Loaded shared library C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\jimage.dll
+
+
+Dynamic libraries:
+0x00007ff6cf500000 - 0x00007ff6cf50a000 	C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\java.exe
+0x00007ffcd5160000 - 0x00007ffcd5350000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffcd4420000 - 0x00007ffcd44d2000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffcd2540000 - 0x00007ffcd27e5000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffcd28c0000 - 0x00007ffcd29ba000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffca25b0000 - 0x00007ffca25c9000 	C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\jli.dll
+0x00007ffcd4970000 - 0x00007ffcd4b04000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffcd20e0000 - 0x00007ffcd2101000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffcd50f0000 - 0x00007ffcd5116000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffcd2110000 - 0x00007ffcd22a8000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffcd2820000 - 0x00007ffcd28be000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffcbedb0000 - 0x00007ffcbf034000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.18362.1316_none_9e7a364fe461dbd7\COMCTL32.dll
+0x00007ffcd39f0000 - 0x00007ffcd3a8e000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffcd4b10000 - 0x00007ffcd4e47000 	C:\WINDOWS\System32\combase.dll
+0x00007ffcd4f30000 - 0x00007ffcd504f000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffcd22b0000 - 0x00007ffcd2331000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffca1410000 - 0x00007ffca1427000 	C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\VCRUNTIME140.dll
+0x00007ffcd3bc0000 - 0x00007ffcd3bee000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffc84fa0000 - 0x00007ffc8503d000 	C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\msvcp140.dll
+0x00007ffc80b10000 - 0x00007ffc815cd000 	C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\server\jvm.dll
+0x00007ffcd45d0000 - 0x00007ffcd4673000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffcd5050000 - 0x00007ffcd50e7000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffcd4960000 - 0x00007ffcd4968000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffcb2950000 - 0x00007ffcb2959000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffcd4820000 - 0x00007ffcd488f000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffcce840000 - 0x00007ffcce864000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffcc8bc0000 - 0x00007ffcc8bca000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffcce790000 - 0x00007ffcce7bd000 	C:\WINDOWS\SYSTEM32\WINMMBASE.dll
+0x00007ffcd2340000 - 0x00007ffcd238a000 	C:\WINDOWS\System32\cfgmgr32.dll
+0x00007ffcd2090000 - 0x00007ffcd20a1000 	C:\WINDOWS\System32\kernel.appcore.dll
+0x00007ffccdff0000 - 0x00007ffcce001000 	C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\verify.dll
+0x00007ffcd08a0000 - 0x00007ffcd0a94000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffcbac60000 - 0x00007ffcbac8a000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffccce40000 - 0x00007ffccce69000 	C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\java.dll
+0x00007ffcc3a50000 - 0x00007ffcc3a5f000 	C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\instrument.dll
+0x00007ffccb810000 - 0x00007ffccb828000 	C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\zip.dll
+0x00007ffccdfe0000 - 0x00007ffccdfeb000 	C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\jimage.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.18362.1316_none_9e7a364fe461dbd7;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\jbr\bin\server
+
+VM Arguments:
+jvm_args: -XX:TieredStopAtLevel=1 -Xverify:none -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\lib\idea_rt.jar=59967:C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\bin -Dfile.encoding=UTF-8 
+java_command: pl.project.ExchangeTradingTesterApplication
+java_class_path (initial): E:\Java\Exchange-Trading-Tester\target\classes;E:\Java\Exchange-Trading-Tester\lib\classmate-1.5.1.jar;E:\Java\Exchange-Trading-Tester\lib\dom4j-2.1.1.jar;E:\Java\Exchange-Trading-Tester\lib\antlr-2.7.7.jar;E:\Java\Exchange-Trading-Tester\lib\byte-buddy-1.10.7.jar;E:\Java\Exchange-Trading-Tester\lib\hibernate-commons-annotations-5.1.0.Final.jar;E:\Java\Exchange-Trading-Tester\lib\FastInfoset-1.2.15.jar;E:\Java\Exchange-Trading-Tester\lib\istack-commons-runtime-3.0.7.jar;E:\Java\Exchange-Trading-Tester\lib\jandex-2.1.1.Final.jar;E:\Java\Exchange-Trading-Tester\lib\hibernate-core-5.4.11.Final.jar;E:\Java\Exchange-Trading-Tester\lib\javassist-3.24.0-GA.jar;E:\Java\Exchange-Trading-Tester\lib\javax.activation-api-1.2.0.jar;E:\Java\Exchange-Trading-Tester\lib\jaxb-api-2.3.1.jar;E:\Java\Exchange-Trading-Tester\lib\javax.persistence-api-2.2.jar;E:\Java\Exchange-Trading-Tester\lib\jboss-logging-3.3.2.Final.jar;E:\Java\Exchange-Trading-Tester\lib\jaxb-runtime-2.3.1.jar;E:\Java\Exchange-Trading-Tester\lib\jboss-transaction-api_1.2_spec-1.1.1.Final.jar;E:\Java\Exchange-Trading-Tester\lib\stax-ex-1.8.jar;E:\Java\Exchange-Trading-Tester\lib\txw2-2.3.1.jar;E:\Java\Exchange-Trading-Tester\lib\spring-aspects-5.2.3.RELEASE.jar;E:\Java\Exchange-Trading-Tester\lib\spring-context-support-5.2.3.RELEASE.jar;E:\Java\Exchange-Trading-Tester\lib\spring-aop-5.2.3.RELEASE.jar;E:\Java\Exchange-Trading-Tester\lib\spring-beans-5.2.3.RELEASE.jar;E:\Java\Exchange-Trading-Tester\lib\spring-context-5.2.3.RELEASE.jar;E:\Java\Exchange-Trading-Tester\lib\spring-instrument-5.2.3.RELEASE.jar;E:\Java\Exchange-Trading-Tester\lib\spring-expression-5.2.3.RELEASE.jar;E:\Java\Exchange-Trading-Tester\lib\spring-jdbc-5.2.3.RELEASE.jar;E:\Java\Exchange-Trading-Tester\lib\spring-core-5.2.3.RELEASE.jar;E:\Java\Exchange-Trading-Tester\lib\spring-messaging-5.2.3.RELEASE.jar;E:\Java\Exchange-Trading-Tester\lib\spring-jms-5.2.3.RELEASE.jar;E:\Java\Exchange-Trading-Tester\lib\spring-oxm-5.2.
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     bool BytecodeVerificationLocal                = false                                     {product} {command line}
+     bool BytecodeVerificationRemote               = false                                     {product} {command line}
+     intx CICompilerCount                          = 3                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 1                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 4                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 268435456                                 {product} {ergonomic}
+     bool ManagementServer                         = true                                      {product} {command line}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 4265607168                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 6973028                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 244685212                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 0                                      {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     intx TieredStopAtLevel                        = 1                                         {product} {command line}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk-14.0.1\bin
+PATH=C:\Program Files\Java\jdk-14.0.1\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Program Files (x86)\Razer\ChromaBroadcast\bin;C:\Program Files\Razer\ChromaBroadcast\bin;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;E:\Program Files (x86)\Borland\CBuilder6\Bin;E:\Program Files (x86)\Borland\CBuilder6\Projects\Bpl;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;E:\Program Files\MATLAB\R2018b\bin;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Java\jdk-11.0.2\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\kwasi\AppData\Local\Microsoft\WindowsApps;C:\Java_Maven\Maven\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\bin;C:\Program Files\heroku\bin;C:\Users\kwasi\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\kwasi\AppData\Roaming\npm
+USERNAME=Kwasek
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 18362 (10.0.18362.1316)
+HyperV virtualization detected
+
+CPU:total 4 (initial active 4) (4 cores per cpu, 1 threads per core) family 6 model 158 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, tsc, tscinvbit, bmi1, bmi2, adx, fma
+
+Memory: 4k page, system-wide physical 16269M (2247M free)
+TotalPageFile size 19769M (AvailPageFile size 178M)
+current process WorkingSet (physical memory assigned to process): 10M, peak: 10M
+current process commit charge ("private bytes"): 49M, peak: 305M
+
+vm_info: OpenJDK 64-Bit Server VM (11.0.6+8-b520.43) for windows-amd64 JRE (11.0.6+8-b520.43), built on Feb  3 2020 14:18:56 by "" with MS VC++ 14.0 (VS2015)
+
+END.

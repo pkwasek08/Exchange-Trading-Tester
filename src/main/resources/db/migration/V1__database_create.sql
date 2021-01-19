@@ -38,6 +38,19 @@ CREATE TABLE "test_parameters" (
                                    "volumes" integer
 );
 
+DROP TABLE IF EXISTS "test_sets" CASCADE;
+CREATE TABLE "test_sets" (
+                                   "id" SERIAL PRIMARY KEY,
+                                   "number_of_users" integer,
+                                   "series" integer,
+                                   "company_id" integer,
+                                   "company_name" varchar,
+                                   "start_user_money" integer,
+                                   "start_stock_number" integer,
+                                   "days" integer,
+                                   "test_name" varchar
+);
+
 ALTER TABLE "tests" ADD FOREIGN KEY ("test_parameters_id") REFERENCES "test_parameters" ("id");
 
 ALTER TABLE "tests" ADD FOREIGN KEY ("endpoint_id") REFERENCES "endpoints" ("id");

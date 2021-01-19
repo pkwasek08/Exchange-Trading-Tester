@@ -5,10 +5,12 @@
 <hibernate-configuration>
   <session-factory>
     <property name="connection.driver_class">org.postgresql.Driver</property>
+    <property name="connection.url">jdbc:postgresql://localhost:5433/tester</property>
     <mapping class="pl.project.endpoints.Endpoint"/>
     <mapping class="pl.project.testParameters.TestParameter"/>
     <mapping class="pl.project.test.Test"/>
-    <!-- <property name="connection.username"/> -->
+      <mapping class="pl.project.testSets.TestSets"/>
+      <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
     <!-- DB schema will be updated if needed -->

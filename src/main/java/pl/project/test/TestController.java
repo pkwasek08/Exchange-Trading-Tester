@@ -47,7 +47,7 @@ public class TestController {
 
     @GetMapping("/simulate")
     @CrossOrigin(origins = "*")
-    public List<ExecMainDetails> simulate(@RequestParam Integer numberUser, @RequestParam Integer numberSeries, @RequestParam Integer companyId,
+    public List<ExecMainDetails> simulate(@RequestParam Integer numberUser, @RequestParam Integer numberSeries, @RequestParam Integer companyId, @RequestParam String companyName,
                                           @RequestParam Integer startUserMoney, @RequestParam Integer startStockNumber, @RequestParam String testName, @RequestParam Integer daysNumber) {
         List<ExecMainDetails> execMainDetailsList = newLinkedList();
         Calendar calendarStart = Calendar.getInstance();
@@ -55,7 +55,7 @@ public class TestController {
         calendarStart.add(Calendar.DAY_OF_WEEK, -daysNumber + 1);
         while (!calendarStart.after(calendarStop)) {
             Date startTask = new Date();
-            TestDetails testDetails = testService.simulate(numberUser, numberSeries, companyId, startUserMoney, startStockNumber, calendarStart.getTime());
+            TestDetails testDetails = testService.simulate(numberUser, numberSeries, companyId, companyName, startUserMoney, startStockNumber, calendarStart.getTime());
             int fullTimeTask = (int) (new Date().getTime() - startTask.getTime());
             Test test = testService.addUpdateTest(new Test(0, testDetails.getExecDetails().getDbTime(), fullTimeTask, testDetails.getExecDetails().getExeTime(), null, null, calendarStart.getTime(),
                     testParameterService.addUpdateTestParameter(new TestParameter(0, numberUser, numberSeries, companyId, testDetails.getCompanyName(), startUserMoney, startStockNumber, testName,

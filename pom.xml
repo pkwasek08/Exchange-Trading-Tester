@@ -12,9 +12,14 @@
     </parent>
     <groupId>pl.project</groupId>
     <artifactId>spring-boot-rest-example</artifactId>
-    <description></description>
+    <version>0.0.1-SNAPSHOT</version>
     <name>Exchange-Trading-Tester</name>
-    <version>1.0-SNAPSHOT</version>
+    <description>Tester for exchange platform</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -87,14 +92,6 @@
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>4.0.3</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                </configuration>
             </plugin>
         </plugins>
         <finalName>Exchange-Trading-Tester</finalName>

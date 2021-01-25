@@ -92,9 +92,9 @@ public class TestService {
         return response.getBody();
     }
 
-    public TestDetails simulate(@NonNull Integer numberUser, @NonNull Integer numberSeries, Integer companyId, @NonNull Integer startUserMoney, @NonNull Integer startStockNumber, @NonNull Date dateTrade) {
+    public TestDetails simulate(@NonNull Integer numberUser, @NonNull Integer numberSeries, Integer companyId, String companyName, @NonNull Integer startUserMoney, @NonNull Integer startStockNumber, @NonNull Date dateTrade) {
         ExecDetailsCompany execDetailsCompany = getCompanyInfoList();
-        CompanyInfoDTO companyInfo = getCompany(companyId, execDetailsCompany.getCompanyIdList());
+        CompanyInfoDTO companyInfo = getCompany(companyId, companyName, execDetailsCompany.getCompanyIdList());
         companyId = companyInfo.getCompanyId();
         TestDetails testDetails = new TestDetails(new ExecDetails(0, 0), new PriceDetails(100000f, 0f, 100000f, 0f, 0), 0, companyInfo.getCompanyName());
         updateExecDetails(testDetails.getExecDetails(), execDetailsCompany.getExecDetails());
@@ -111,8 +111,8 @@ public class TestService {
         return testDetails;
     }
 
-    private CompanyInfoDTO getCompany(Integer companyId, List<CompanyInfoDTO> companyInfoList) {
-        return isNull(companyId) || !companyInfoList.contains(getCompanyInfoByCompanyId(companyInfoList,companyId)) ? getRandomCompanyInfo(companyInfoList) : getCompanyInfoByCompanyId(companyInfoList, companyId);
+    private CompanyInfoDTO getCompany(Integer companyId, String companyName, List<CompanyInfoDTO> companyInfoList) {
+        return isNull(companyId) || !companyInfoList.contains(getCompanyInfoByCompanyId(companyInfoList, companyId)) ? getRandomCompanyInfo(companyInfoList) : new CompanyInfoDTO(companyId, companyName);
     }
 
     private CompanyInfoDTO getCompanyInfoByCompanyId(List<CompanyInfoDTO> companyInfoList, Integer companyId) {

@@ -55,7 +55,7 @@ public class TestService {
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         List<User> userList = createNewUserList(numberUsers, 10000);
         HttpEntity<Object> requestEntity = new HttpEntity<Object>(userList, headers);
-        ResponseEntity<ExecDetails> response = this.restTemplate.postForEntity("http://localhost:8080/user/addUserList", requestEntity, ExecDetails.class);
+        ResponseEntity<ExecDetails> response = this.restTemplate.postForEntity("http://et-api:8080/user/addUserList", requestEntity, ExecDetails.class);
         return response.getBody();
     }
 
@@ -72,7 +72,7 @@ public class TestService {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         HttpEntity<Object> requestEntity = new HttpEntity<Object>(userList, headers);
-        ResponseEntity<ExecDetailsUser> response = this.restTemplate.postForEntity("http://localhost:8080/user/addUserList", requestEntity, ExecDetailsUser.class);
+        ResponseEntity<ExecDetailsUser> response = this.restTemplate.postForEntity("http://et-api:8080/user/addUserList", requestEntity, ExecDetailsUser.class);
         return response.getBody();
     }
 
@@ -80,7 +80,7 @@ public class TestService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        ResponseEntity<ExecDetailsUser> response = this.restTemplate.getForEntity("http://localhost:8080/user/details/" + userId, ExecDetailsUser.class);
+        ResponseEntity<ExecDetailsUser> response = this.restTemplate.getForEntity("http://et-api:8080/user/details/" + userId, ExecDetailsUser.class);
         return response.getBody();
     }
 
@@ -88,7 +88,7 @@ public class TestService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        ResponseEntity<ExecDetailsCompany> response = this.restTemplate.getForEntity("http://localhost:8080/company/infoList", ExecDetailsCompany.class);
+        ResponseEntity<ExecDetailsCompany> response = this.restTemplate.getForEntity("http://et-api:8080/company/infoList", ExecDetailsCompany.class);
         return response.getBody();
     }
 
@@ -195,7 +195,7 @@ public class TestService {
                     transactionDetails.setPrice(getOfferSettledByAmount(execDetailsOfferLimit.getOfferLimitDTOList(), amount).getPrice());
                     StockSellBuy stockBuy = new StockSellBuy(amount, "Buy", dateTrade, companyId, user.getId());
                     HttpEntity<Object> requestEntity = new HttpEntity<Object>(stockBuy, headers);
-                    this.restTemplate.postForEntity("http://localhost:8080/offerSellBuy/newOffer", requestEntity, ExecDetails.class);
+                    this.restTemplate.postForEntity("http://et-api:8080/offerSellBuy/newOffer", requestEntity, ExecDetails.class);
                 }
             }
         } catch (Exception e) {
@@ -235,7 +235,7 @@ public class TestService {
                     transactionDetails.setPrice(getOfferSettledByAmount(execDetailsOfferLimit.getOfferLimitDTOList(), amount).getPrice());
                     StockSellBuy stockSell = new StockSellBuy(amount, "Sell", dateTrade, companyId, user.getId());
                     HttpEntity<Object> requestEntity = new HttpEntity<Object>(stockSell, headers);
-                    this.restTemplate.postForEntity("http://localhost:8080/offerSellBuy", requestEntity, ExecDetails.class);
+                    this.restTemplate.postForEntity("http://et-api:8080/offerSellBuy", requestEntity, ExecDetails.class);
                 }
             }
         } catch (Exception e) {
@@ -275,7 +275,7 @@ public class TestService {
                 if (amount > 0 && price > 0) {
                     OfferLimitDTO stockBuy = new OfferLimitDTO(amount, "Buy", dateTrade, companyId, user.getId(), price);
                     HttpEntity<Object> requestEntity = new HttpEntity<Object>(stockBuy, headers);
-                    this.restTemplate.postForEntity("http://localhost:8080/offerSellBuyLimit/newOfferLimit", requestEntity, ExecDetails.class);
+                    this.restTemplate.postForEntity("http://et-api:8080/offerSellBuyLimit/newOfferLimit", requestEntity, ExecDetails.class);
                 }
             }
         } catch (Exception e) {
@@ -313,7 +313,7 @@ public class TestService {
                 if (amount > 0 && price > 0) {
                     OfferLimitDTO stockBuy = new pl.project.components.OfferLimitDTO(amount, "Sell", dateTrade, companyId, user.getId(), price);
                     HttpEntity<Object> requestEntity = new HttpEntity<Object>(stockBuy, headers);
-                    this.restTemplate.postForEntity("http://localhost:8080/offerSellBuyLimit/newOfferLimit", requestEntity, ExecDetails.class);
+                    this.restTemplate.postForEntity("http://et-api:8080/offerSellBuyLimit/newOfferLimit", requestEntity, ExecDetails.class);
                 }
             }
         } catch (Exception e) {
@@ -402,11 +402,11 @@ public class TestService {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         if (type.equals("Buy")) {
-            ResponseEntity<ExecDetailsOfferLimit> response = this.restTemplate.getForEntity("http://localhost:8080/offerSellBuyLimit/buy/company/details/" + companyId + "/user/" + userId
+            ResponseEntity<ExecDetailsOfferLimit> response = this.restTemplate.getForEntity("http://et-api:8080/offerSellBuyLimit/buy/company/details/" + companyId + "/user/" + userId
                     , ExecDetailsOfferLimit.class);
             return new ExecDetailsOfferLimit(response.getBody().getExecDetails(), response.getBody().getOfferLimitDTOList());
         } else {
-            ResponseEntity<ExecDetailsOfferLimit> response = this.restTemplate.getForEntity("http://localhost:8080/offerSellBuyLimit/sell/company/details/" + companyId + "/user/" + userId
+            ResponseEntity<ExecDetailsOfferLimit> response = this.restTemplate.getForEntity("http://et-api:8080/offerSellBuyLimit/sell/company/details/" + companyId + "/user/" + userId
                     , ExecDetailsOfferLimit.class);
             return new ExecDetailsOfferLimit(response.getBody().getExecDetails(), response.getBody().getOfferLimitDTOList());
         }
@@ -417,11 +417,11 @@ public class TestService {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         if (type.equals("Buy")) {
-            ResponseEntity<ExecDetailsOfferLimit> response = this.restTemplate.getForEntity("http://localhost:8080/offerSellBuyLimit/buy/company/first/" + companyId + "/user/" + userId
+            ResponseEntity<ExecDetailsOfferLimit> response = this.restTemplate.getForEntity("http://et-api:8080/offerSellBuyLimit/buy/company/first/" + companyId + "/user/" + userId
                     , ExecDetailsOfferLimit.class);
             return new ExecDetailsOfferLimit(response.getBody().getExecDetails(), response.getBody().getOfferLimitDTO());
         } else {
-            ResponseEntity<ExecDetailsOfferLimit> response = this.restTemplate.getForEntity("http://localhost:8080/offerSellBuyLimit/sell/company/first/" + companyId + "/user/" + userId
+            ResponseEntity<ExecDetailsOfferLimit> response = this.restTemplate.getForEntity("http://et-api:8080/offerSellBuyLimit/sell/company/first/" + companyId + "/user/" + userId
                     , ExecDetailsOfferLimit.class);
             return new ExecDetailsOfferLimit(response.getBody().getExecDetails(), response.getBody().getOfferLimitDTO());
         }
@@ -431,7 +431,7 @@ public class TestService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        ResponseEntity<ExecDetailsUserStock> response = this.restTemplate.getForEntity("http://localhost:8080/stock/company/" + companyId + "/user/" + userId, ExecDetailsUserStock.class);
+        ResponseEntity<ExecDetailsUserStock> response = this.restTemplate.getForEntity("http://et-api:8080/stock/company/" + companyId + "/user/" + userId, ExecDetailsUserStock.class);
         return new ExecDetailsUserStock(response.getBody().getExecDetails(), response.getBody().getUserStockDTO());
     }
 

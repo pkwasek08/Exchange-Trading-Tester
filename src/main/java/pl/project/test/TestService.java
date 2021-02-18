@@ -92,11 +92,14 @@ public class TestService {
         return response.getBody();
     }
 
-    public TestDetails simulate(@NonNull Integer numberUser, @NonNull Integer numberSeries, Integer companyId, String companyName, @NonNull Integer startUserMoney, @NonNull Integer startStockNumber, @NonNull Date dateTrade) {
+    public TestDetails simulate(@NonNull Integer numberUser, @NonNull Integer numberSeries, Integer companyId,
+                                String companyName, @NonNull Integer startUserMoney, @NonNull Integer startStockNumber, @NonNull Date dateTrade) {
         ExecDetailsCompany execDetailsCompany = getCompanyInfoList();
         CompanyInfoDTO companyInfo = getCompany(companyId, companyName, execDetailsCompany.getCompanyIdList());
         companyId = companyInfo.getCompanyId();
-        TestDetails testDetails = new TestDetails(new ExecDetails(0, 0), new PriceDetails(100000f, 0f, 100000f, 0f, 0), 0, companyInfo.getCompanyName());
+        TestDetails testDetails = new TestDetails(new ExecDetails(0, 0),
+                new PriceDetails(100000f, 0f, 100000f, 0f, 0),
+                0, companyInfo.getCompanyName());
         updateExecDetails(testDetails.getExecDetails(), execDetailsCompany.getExecDetails());
         ExecDetailsUser execDetailsUser = signOnUsers(createNewUserList(numberUser, startUserMoney));
         List<User> userList = execDetailsUser.getUserList();
@@ -180,7 +183,7 @@ public class TestService {
                     break;
                 }
                 int amountStockFromOfferLimit = getAmountStockFromOfferLimit(execDetailsOfferLimit.getOfferLimitDTOList());
-                int amount = buyAll ? stockNumber : random.nextInt(stockNumber) + 1;
+                int amount = buyAll ? stockNumber : random.nextInt(stockNumber/2) + 1;
                 float price = 0;
                 if (execDetailsUser.getUser().getCash() <= 0 || amountStockFromOfferLimit == 0) {
                     amount = 0;
@@ -259,9 +262,9 @@ public class TestService {
                 if (isNull(execDetailsSellOfferLimit.getOfferLimitDTO().getPrice()) || execDetailsSellOfferLimit.getOfferLimitDTO().getPrice() == 0) {
                     ExecDetailsOfferLimit execDetailsBuyOfferLimit = getFirstOfferLimit(companyId, "Buy", user.getId());
                     updateExecDetails(execDetails, execDetailsBuyOfferLimit.getExecDetails());
-                    price = execDetailsBuyOfferLimit.getOfferLimitDTO().getPrice() * (1 - ((float) (random.nextInt(stockNumber) + 1) / 100));
+                    price = execDetailsBuyOfferLimit.getOfferLimitDTO().getPrice() * (1 - ((float) (random.nextInt(5) + 1) / 100));
                 } else {
-                    price = execDetailsSellOfferLimit.getOfferLimitDTO().getPrice() * (1 - ((float) random.nextInt(stockNumber) + 1) / 100);
+                    price = execDetailsSellOfferLimit.getOfferLimitDTO().getPrice() * (1 - ((float) random.nextInt(5) + 1) / 100);
                 }
                 ExecDetailsUser execDetailsUser = getUserById(user.getId());
                 updateExecDetails(execDetails, new ExecDetails(execDetailsUser.getExeTime(), execDetailsUser.getDbTime()));
@@ -298,9 +301,9 @@ public class TestService {
                 if (isNull(execDetailsUserStock.getUserStockDTO().getActualPrice()) || execDetailsUserStock.getUserStockDTO().getActualPrice() == 0) {
                     ExecDetailsOfferLimit execDetailsOfferLimit = getFirstOfferLimit(companyId, "Buy", user.getId());
                     updateExecDetails(execDetails, execDetailsOfferLimit.getExecDetails());
-                    price = execDetailsOfferLimit.getOfferLimitDTO().getPrice() * (1 + ((float) (random.nextInt(stockNumber) + 1) / 100));
+                    price = execDetailsOfferLimit.getOfferLimitDTO().getPrice() * (1 + ((float) (random.nextInt(5) + 1) / 100));
                 } else {
-                    price = execDetailsUserStock.getUserStockDTO().getActualPrice() * (1 + ((float) (random.nextInt(stockNumber) + 1) / 100));
+                    price = execDetailsUserStock.getUserStockDTO().getActualPrice() * (1 + ((float) (random.nextInt(5) + 1) / 100));
                 }
                 price = (float) (Math.round(price * 100.0) / 100.0);
                 if (execDetailsUserStock.getUserStockDTO().getAmount() == 0) {
